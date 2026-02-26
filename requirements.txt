@@ -16,3 +16,8 @@ pandas==2.2.3
 numpy==1.26.4
 
 requests==2.32.3
+"""
+git add requirements.txt
+git commit -m "fix: update dependency versions for streamlit cloud"
+git push origin main
+"""
