@@ -1,6 +1,9 @@
 """
 このファイルは、最初の画面読み込み時にのみ実行される初期化処理が記述されたファイルです。
 """
+import os
+
+os.environ["USER_AGENT"] = "Mozilla/5.0 (compatible; StreamlitApp/1.0)"
 
 ############################################################
 # ライブラリの読み込み
@@ -26,24 +29,24 @@ import constants as ct
 ############################################################
 # 「.env」ファイルで定義した環境変数の読み込み
 load_dotenv()
+import os
+os.environ["USER_AGENT"] = "Mozilla/5.0 (compatible; StreamlitApp/1.0)"
 
 
 ############################################################
 # 関数定義
 ############################################################
 
+
 def initialize():
-    """
-    画面読み込み時に実行する初期化処理
-    """
-    # 初期化データの用意
-    initialize_session_state()
-    # ログ出力用にセッションIDを生成
-    initialize_session_id()
-    # ログ出力の設定
-    initialize_logger()
-    # RAGのRetrieverを作成
-    initialize_retriever()
+    try:
+        initialize_session_state()
+        initialize_session_id()
+        initialize_logger()
+        initialize_retriever()
+    except Exception as e:
+        st.error(f"初期化エラー詳細: {e}")
+        raise
 
 
 def initialize_logger():
